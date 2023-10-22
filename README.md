@@ -1,16 +1,5 @@
 <h1 align="center">Hi 🥳, Chang'e（嫦娥）</h1>
 <h3 align="center">一个通过 Go + React 实现的前后端分离运维管理系统（后端）</h3>
-<p align="center">
-<a href="https://github.com/goer3/change-api/fork" target="blank">
-<img src="https://img.shields.io/github/forks/goer3/change-api?style=flat-square" alt="github-profile-readme-generator forks"/>
-</a>
-<a href="https://github.com/goer3/change-api/stargazers" target="blank">
-<img src="https://img.shields.io/github/stars/goer3/change-api?style=flat-square" alt="github-profile-readme-generator stars"/>
-</a>
-<a href="https://github.com/goer3/change-api/issues" target="blank">
-<img src="https://img.shields.io/github/issues/goer3/change-api?style=flat-square" alt="github-profile-readme-generator issues"/>
-</a>
-</p>
 
 <hr>
 
