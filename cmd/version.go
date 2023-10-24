@@ -7,11 +7,11 @@ import (
 )
 
 func init() {
-    RootCmd.AddCommand(VersionCmd)
+    rootCmd.AddCommand(versionCmd)
 }
 
-// VersionCmd 版本信息
-var VersionCmd = &cobra.Command{
+// 版本信息
+var versionCmd = &cobra.Command{
     Use:   "version",
     Short: "Show the current version of the service",
     Run: func(cmd *cobra.Command, args []string) {

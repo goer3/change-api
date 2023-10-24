@@ -7,11 +7,11 @@ import (
 )
 
 func init() {
-    RootCmd.AddCommand(InfoCmd)
+    rootCmd.AddCommand(infoCmd)
 }
 
-// InfoCmd 开发者信息
-var InfoCmd = &cobra.Command{
+// 开发者信息
+var infoCmd = &cobra.Command{
     Use:   "info",
     Short: "Show the information of the service",
     Run: func(cmd *cobra.Command, args []string) {
