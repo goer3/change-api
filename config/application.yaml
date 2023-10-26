@@ -1,0 +1,55 @@
+# 系统配置
+system:
+  # 接口固定前缀
+  api-prefix: /api
+  # 接口版本
+  api-version: v1
+
+# 日志配置
+log:
+  # 是否打印日志到文件
+  enabled: true
+  # 日志等级，参考 zapcore.Level（-1<=level<=5，-1 / DEBUG）
+  level: -1
+  # 日志保存目录
+  path: logs
+  # 日志切割配置，单位 M
+  max-size: 100
+  # 日志保留天数
+  max-age: 7
+  # 日志保留个数
+  max-backups: 10
+  # 是否压缩
+  compress: false
+
+# 数据库日志配置
+sql-log:
+  # 是否打印数据库 SQL 日志
+  enabled: true
+
+# 数据库配置
+mysql:
+  # 主机地址
+  host: 127.0.0.1
+  # 端口
+  port: 3306
+  # 数据库
+  database: demo
+  # 用户名
+  username: root
+  # 密码，加密密码，加密规则为：
+  password: 123456
+  # 字符集
+  charset: utf8mb4
+  # 排序规则
+  collation: utf8mb4_bin
+  # 超时时间，单位毫秒
+  timeout: 1000
+  # 额外参数
+  extra-param: parseTime=True&loc=Local
+  # 最大打开链接数
+  max-open-conns: 100
+  # 最大空闲连接数
+  max-idle-conns: 10
+  # 空闲连接最大超时时间，单位分钟
+  max-idle-time: 30
