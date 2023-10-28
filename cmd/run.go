@@ -42,7 +42,7 @@ var runServeCmd = &cobra.Command{
         initialize.Logger()
 
         // 数据库连接初始化
-        // initialize.MySQL()
+        initialize.MySQL()
 
         // 路由初始化
         r := initialize.Router()

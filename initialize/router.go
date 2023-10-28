@@ -20,10 +20,12 @@ func Router() *gin.Engine {
     r.Use(middleware.Exception) // 异常拦截中间件
 
     // 路由组
-    rg := r.Group(common.Config.System.ApiPrefix + "/" + common.Config.System.ApiVersion)
-    {
-        routes.PublicRoute(rg) // 开放路由组
-    }
+    prg := r.Group(common.Config.System.ApiPrefix + "/" + common.Config.System.ApiVersion)
+    routes.PublicRoutes(prg) // 开放路由组
+
+    // 用户路由组
+    urg := r.Group(common.Config.System.ApiPrefix + "/" + common.Config.System.ApiVersion + "/user")
+    routes.UserRoutes(urg) // 用户路由组
 
     // 初始化成功
     log2.INFO("router initialize success")

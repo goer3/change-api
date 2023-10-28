@@ -53,5 +53,5 @@ func MySQL() {
 
     // 设置全局数据库连接，方便后续使用
     common.DB = db
-    common.Log.Info("database initialize success: ", common.Config.MySQL.Host)
+    common.Log.Info("database initialize success: ", fmt.Sprintf("%s:%d", common.Config.MySQL.Host, common.Config.MySQL.Port))
 }
