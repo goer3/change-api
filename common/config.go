@@ -17,6 +17,7 @@ type Configuration struct {
     System SystemConfiguration `mapstructure:"system" json:"system"`
     Log    LogConfiguration    `mapstructure:"log" json:"log"`
     MySQL  MySQLConfiguration  `mapstructure:"mysql" json:"mysql"`
+    Redis  RedisConfiguration  `mapstructure:"redis" json:"redis"`
 }
 
 // 系统配置
@@ -48,6 +49,19 @@ type MySQLConfiguration struct {
     Timeout      int    `mapstructure:"timeout" json:"timeout"`
     ExtraParam   string `mapstructure:"extra-param" json:"extra_param"`
     MaxOpenConns int    `mapstructure:"max-open-conns" json:"max_open_conns"`
+    MaxIdleConns int    `mapstructure:"max-idle-conns" json:"max_idle_conns"`
+    MaxIdleTime  int    `mapstructure:"max-idle-time" json:"max_idle_time"`
+}
+
+// Redis 配置
+type RedisConfiguration struct {
+    Host         string `mapstructure:"host" json:"host"`
+    Port         int    `mapstructure:"port" json:"port"`
+    Database     int    `mapstructure:"database" json:"database"`
+    Password     string `mapstructure:"password" json:"password"`
+    Timeout      int    `mapstructure:"timeout" json:"timeout"`
+    MaxOpenConns int    `mapstructure:"max-open-conns" json:"max_open_conns"`
+    MinIdleConns int    `mapstructure:"min-idle-conns" json:"min_idle_conns"`
     MaxIdleConns int    `mapstructure:"max-idle-conns" json:"max_idle_conns"`
     MaxIdleTime  int    `mapstructure:"max-idle-time" json:"max_idle_time"`
 }

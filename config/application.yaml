@@ -37,7 +37,7 @@ mysql:
   database: change
   # 用户名
   username: root
-  # 密码，加密密码，加密规则为：
+  # 密码
   password: 123456
   # 字符集
   charset: utf8mb4
@@ -53,3 +53,24 @@ mysql:
   max-idle-conns: 10
   # 空闲连接最大超时时间，单位分钟
   max-idle-time: 30
+
+# redis 配置
+redis:
+  # 主机地址
+  host: 127.0.0.1
+  # 端口
+  port: 6379
+  # 数据库
+  database: 0
+  # 密码，没有就不设置
+  password: ""
+  # 连接超时时间，单位秒
+  timeout: 5
+  # 最大连接数，一般比 CPU 核数 4 倍少一点
+  max-open-conns: 12
+  # 最小空闲连接
+  min-idle-conns: 5
+  # 最大空闲连接
+  max-idle-conns: 10
+  # 最大空闲时长，单位分钟
+  max-idle-time: 10

@@ -21,4 +21,8 @@ go get -u gorm.io/gorm
 go get -u gorm.io/driver/mysql
 # 日期时间
 go get -u github.com/golang-module/carbon/v2
+# Redis
+go get -u github.com/redis/go-redis/v9
+# JWT
+go get -u github.com/appleboy/gin-jwt/v2
 ```

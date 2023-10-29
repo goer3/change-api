@@ -40,9 +40,9 @@ func MySQL() {
 
     // 错误处理
     if err != nil {
-        common.Log.Error("database connect failed")
+        common.Log.Error("mysql connect failed")
         common.Log.Error(err)
-        panic("database connect failed")
+        panic("mysql connect failed")
     }
 
     // 设置数据库连接池
@@ -53,5 +53,8 @@ func MySQL() {
 
     // 设置全局数据库连接，方便后续使用
     common.DB = db
-    common.Log.Info("database initialize success: ", fmt.Sprintf("%s:%d", common.Config.MySQL.Host, common.Config.MySQL.Port))
+    common.Log.Info("mysql initialize success: ", fmt.Sprintf("%s:%d/%s",
+        common.Config.MySQL.Host,
+        common.Config.MySQL.Port,
+        common.Config.MySQL.Database))
 }

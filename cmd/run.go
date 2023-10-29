@@ -44,6 +44,9 @@ var runServeCmd = &cobra.Command{
         // 数据库连接初始化
         initialize.MySQL()
 
+        // Redis 连接初始化
+        initialize.Redis()
+
         // 路由初始化
         r := initialize.Router()
 
@@ -61,7 +64,7 @@ var runServeCmd = &cobra.Command{
 
         // 监听地址
         listenAddress := fmt.Sprintf("%s:%s", common.Runtime.Listen, common.Runtime.Port)
-        common.Log.Info("listening address is: ", listenAddress)
+        common.Log.Info("listening address: ", listenAddress)
 
         // 配置服务
         server := http.Server{

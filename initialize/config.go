@@ -5,7 +5,6 @@ import (
     "change-api/common"
     "change-api/pkg/log2"
     "change-api/pkg/utils"
-    "fmt"
     "os"
 
     "github.com/spf13/viper"
@@ -59,5 +58,5 @@ func Config() {
     }
 
     // 配置读取完成
-    log2.INFO(fmt.Sprintf("config file %s initialize success", filename))
+    log2.INFO("config initialize success:", filename)
 }
