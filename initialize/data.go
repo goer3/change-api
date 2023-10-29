@@ -11,16 +11,16 @@ import (
 func Data() {
     var users = []model.User{
         {
-            BaseModel: model.BaseModel{Id: 1},
-            Name:      "张三",
+            Id:   1,
+            Name: "张三",
         },
         {
-            BaseModel: model.BaseModel{Id: 2},
-            Name:      "李四",
+            Id:   2,
+            Name: "李四",
         },
         {
-            BaseModel: model.BaseModel{Id: 3},
-            Name:      "王五",
+            Id:   3,
+            Name: "王五",
         },
     }
 

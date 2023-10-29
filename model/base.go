@@ -7,8 +7,8 @@ import "github.com/golang-module/carbon/v2"
 // 2. carbon 支持全球范围内的时区，可以轻松地进行时区转换和时区相关的操作
 // 3. carbon 可以根据不同的日期时间格式，解析字符串并转换为日期时间对象
 // 使用文档：https://juejin.cn/post/6925036967151288328
+// 为了减少嵌套层级，Id 字段放到 model 去定义
 type BaseModel struct {
-    Id        uint            `gorm:"primaryKey;comment:自增编号" json:"id"`
     CreatedAt carbon.DateTime `gorm:"comment:创建时间" json:"created_at"`
     UpdatedAt carbon.DateTime `gorm:"comment:更新时间" json:"updated_at"`
     DeletedAt DeletedAt       `gorm:"comment:删除时间" json:"deleted_at"`
