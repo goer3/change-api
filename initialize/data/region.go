@@ -26,8 +26,8 @@ func ImportSQLFile(filename string, table string, truncate bool) {
 
 // 初始化省市区街道数据
 func Region() {
-    ImportSQLFile("sql/province.sql", "province", true)
-    ImportSQLFile("sql/city.sql", "city", true)
-    ImportSQLFile("sql/area.sql", "area", true)
-    ImportSQLFile("sql/street.sql", "street", true)
+    ImportSQLFile("initialize/data/sql/province.sql", "province", true)
+    ImportSQLFile("initialize/data/sql/city.sql", "city", true)
+    ImportSQLFile("initialize/data/sql/area.sql", "area", true)
+    ImportSQLFile("initialize/data/sql/street.sql", "street", true)
 }
