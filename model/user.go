@@ -16,17 +16,19 @@ type User struct {
     DepartmentId       uint            `gorm:"comment:部门id" json:"department_id"` // 关联部门
     Department         Department      `gorm:"foreignKey:DepartmentId;comment:部门" json:"department"`
     OfficeProvinceId   uint            `gorm:"comment:办公地点省id" json:"office_province_id"` // 关联省市区
-    OfficeProvince     Region          `gorm:"foreignKey:OfficeProvinceId;comment:省" json:"office_province"`
+    OfficeProvince     Province        `gorm:"foreignKey:OfficeProvinceId;comment:省" json:"office_province"`
     OfficeCityId       uint            `gorm:"comment:办公地点市id" json:"office_city_id"`
-    OfficeCity         Region          `gorm:"foreignKey:OfficeCityId;comment:市" json:"office_city"`
-    OfficeDistrictId   uint            `gorm:"comment:办公地点区id" json:"office_district_id"`
-    OfficeDistrict     Region          `gorm:"foreignKey:OfficeDistrictId;comment:区" json:"office_district"`
+    OfficeCity         City            `gorm:"foreignKey:OfficeCityId;comment:市" json:"office_city"`
+    OfficeAreaId       uint            `gorm:"comment:办公地点区id" json:"office_area_id"`
+    OfficeArea         Area            `gorm:"foreignKey:OfficeAreaId;comment:区" json:"office_area"`
+    OfficeStreetId     uint            `gorm:"comment:办公地点街道id" json:"office_street_id"`
+    OfficeStreet       Street          `gorm:"foreignKey:OfficeStreetId;comment:街道" json:"office_street"`
     OfficeAddress      string          `gorm:"comment:办公地点详细地址" json:"office_address"`
     OfficeStation      string          `gorm:"comment:办公地点工位" json:"office_station"`
     NativeProvinceId   uint            `gorm:"comment:籍贯省id" json:"native_province_id"`
-    NativeProvince     Region          `gorm:"foreignKey:NativeProvinceId;comment:省" json:"native_province"`
+    NativeProvince     Province        `gorm:"foreignKey:NativeProvinceId;comment:省" json:"native_province"`
     NativeCityId       uint            `gorm:"comment:籍贯市id" json:"native_city_id"`
-    NativeCity         Region          `gorm:"foreignKey:NativeCityId;comment:市" json:"native_city"`
+    NativeCity         City            `gorm:"foreignKey:NativeCityId;comment:市" json:"native_city"`
     Gender             *uint           `gorm:"type:tinyint(1);default:1;comment:性别(1=男,2=女,3=未知)" json:"gender"`
     Avatar             string          `gorm:"comment:头像" json:"avatar"`
     Birthday           carbon.DateTime `gorm:"comment:生日" json:"birthday"`
