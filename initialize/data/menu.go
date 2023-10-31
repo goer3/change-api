@@ -16,6 +16,7 @@ var menus = []model.Menu{
         Path:     "/dashboard",
         Sort:     0,
         ParentId: 0,
+        Roles:    roles,
     },
     {
         Id:       1010,
@@ -24,6 +25,9 @@ var menus = []model.Menu{
         Path:     "/workflow",
         Sort:     0,
         ParentId: 0,
+        Roles: []model.Role{
+            roles[0],
+        },
         Children: []model.Menu{
             {
                 Id:       1011,
@@ -32,6 +36,9 @@ var menus = []model.Menu{
                 Path:     "/workflow/create",
                 Sort:     0,
                 ParentId: 1010,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1012,
@@ -40,6 +47,9 @@ var menus = []model.Menu{
                 Path:     "/workflow/list",
                 Sort:     0,
                 ParentId: 1010,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1013,
@@ -48,6 +58,9 @@ var menus = []model.Menu{
                 Path:     "/workflow/approve",
                 Sort:     0,
                 ParentId: 1010,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
         },
     },
@@ -58,6 +71,9 @@ var menus = []model.Menu{
         Path:     "/job",
         Sort:     0,
         ParentId: 0,
+        Roles: []model.Role{
+            roles[0],
+        },
         Children: []model.Menu{
             {
                 Id:       1021,
@@ -66,6 +82,9 @@ var menus = []model.Menu{
                 Path:     "/job/cron",
                 Sort:     0,
                 ParentId: 1020,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1022,
@@ -74,6 +93,9 @@ var menus = []model.Menu{
                 Path:     "/job/multiple",
                 Sort:     0,
                 ParentId: 1020,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1023,
@@ -82,6 +104,9 @@ var menus = []model.Menu{
                 Path:     "/job/monitor",
                 Sort:     0,
                 ParentId: 1020,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
         },
     },
@@ -92,6 +117,9 @@ var menus = []model.Menu{
         Path:     "/asset",
         Sort:     0,
         ParentId: 0,
+        Roles: []model.Role{
+            roles[0],
+        },
         Children: []model.Menu{
             {
                 Id:       1031,
@@ -100,6 +128,9 @@ var menus = []model.Menu{
                 Path:     "/asset/owen",
                 Sort:     0,
                 ParentId: 1030,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1032,
@@ -108,6 +139,9 @@ var menus = []model.Menu{
                 Path:     "/asset/cloud",
                 Sort:     0,
                 ParentId: 1030,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1033,
@@ -116,6 +150,9 @@ var menus = []model.Menu{
                 Path:     "/asset/business",
                 Sort:     0,
                 ParentId: 1030,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
         },
     },
@@ -126,6 +163,9 @@ var menus = []model.Menu{
         Path:     "/dns",
         Sort:     0,
         ParentId: 0,
+        Roles: []model.Role{
+            roles[0],
+        },
         Children: []model.Menu{
             {
                 Id:       1041,
@@ -134,6 +174,9 @@ var menus = []model.Menu{
                 Path:     "/dns/in",
                 Sort:     0,
                 ParentId: 1040,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1042,
@@ -142,6 +185,9 @@ var menus = []model.Menu{
                 Path:     "/dns/add",
                 Sort:     0,
                 ParentId: 1040,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1043,
@@ -150,6 +196,9 @@ var menus = []model.Menu{
                 Path:     "/dns/out",
                 Sort:     0,
                 ParentId: 1040,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1044,
@@ -158,6 +207,9 @@ var menus = []model.Menu{
                 Path:     "/dns/business",
                 Sort:     0,
                 ParentId: 1040,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
         },
     },
@@ -168,6 +220,9 @@ var menus = []model.Menu{
         Path:     "/artifact",
         Sort:     0,
         ParentId: 0,
+        Roles: []model.Role{
+            roles[0],
+        },
         Children: []model.Menu{
             {
                 Id:       1051,
@@ -176,6 +231,9 @@ var menus = []model.Menu{
                 Path:     "/artifact/build",
                 Sort:     0,
                 ParentId: 1050,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1052,
@@ -184,6 +242,9 @@ var menus = []model.Menu{
                 Path:     "/artifact/repository",
                 Sort:     0,
                 ParentId: 1050,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1053,
@@ -192,6 +253,9 @@ var menus = []model.Menu{
                 Path:     "/artifact/template",
                 Sort:     0,
                 ParentId: 1050,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
         },
     },
@@ -202,6 +266,9 @@ var menus = []model.Menu{
         Path:     "/deploy",
         Sort:     0,
         ParentId: 0,
+        Roles: []model.Role{
+            roles[0],
+        },
         Children: []model.Menu{
             {
                 Id:       1061,
@@ -210,6 +277,9 @@ var menus = []model.Menu{
                 Path:     "/deploy/build",
                 Sort:     0,
                 ParentId: 1060,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1062,
@@ -218,6 +288,9 @@ var menus = []model.Menu{
                 Path:     "/deploy/container",
                 Sort:     0,
                 ParentId: 1060,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1063,
@@ -226,6 +299,9 @@ var menus = []model.Menu{
                 Path:     "/deploy/template",
                 Sort:     0,
                 ParentId: 1060,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
         },
     },
@@ -236,6 +312,9 @@ var menus = []model.Menu{
         Path:     "/alert",
         Sort:     0,
         ParentId: 0,
+        Roles: []model.Role{
+            roles[0],
+        },
         Children: []model.Menu{
             {
                 Id:       1071,
@@ -244,6 +323,9 @@ var menus = []model.Menu{
                 Path:     "/alert/dashboard",
                 Sort:     0,
                 ParentId: 1070,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1072,
@@ -252,6 +334,9 @@ var menus = []model.Menu{
                 Path:     "/alert/rule",
                 Sort:     0,
                 ParentId: 1070,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1073,
@@ -260,6 +345,9 @@ var menus = []model.Menu{
                 Path:     "/alert/message",
                 Sort:     0,
                 ParentId: 1070,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1074,
@@ -268,6 +356,9 @@ var menus = []model.Menu{
                 Path:     "/alert/history",
                 Sort:     0,
                 ParentId: 1070,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
         },
     },
@@ -278,6 +369,9 @@ var menus = []model.Menu{
         Path:     "/project",
         Sort:     0,
         ParentId: 0,
+        Roles: []model.Role{
+            roles[0],
+        },
         Children: []model.Menu{
             {
                 Id:       1081,
@@ -286,6 +380,9 @@ var menus = []model.Menu{
                 Path:     "/project/list",
                 Sort:     0,
                 ParentId: 1080,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1082,
@@ -294,6 +391,9 @@ var menus = []model.Menu{
                 Path:     "/project/applications",
                 Sort:     0,
                 ParentId: 1080,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
         },
     },
@@ -304,6 +404,9 @@ var menus = []model.Menu{
         Path:     "/users",
         Sort:     0,
         ParentId: 0,
+        Roles: []model.Role{
+            roles[0],
+        },
         Children: []model.Menu{
             {
                 Id:       1091,
@@ -312,6 +415,9 @@ var menus = []model.Menu{
                 Path:     "/users/list",
                 Sort:     0,
                 ParentId: 1090,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1092,
@@ -320,6 +426,9 @@ var menus = []model.Menu{
                 Path:     "/users/group",
                 Sort:     0,
                 ParentId: 1090,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1093,
@@ -328,6 +437,9 @@ var menus = []model.Menu{
                 Path:     "/users/role",
                 Sort:     0,
                 ParentId: 1090,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
         },
     },
@@ -338,6 +450,9 @@ var menus = []model.Menu{
         Path:     "/system",
         Sort:     0,
         ParentId: 0,
+        Roles: []model.Role{
+            roles[0],
+        },
         Children: []model.Menu{
             {
                 Id:       1101,
@@ -346,6 +461,9 @@ var menus = []model.Menu{
                 Path:     "/system/department",
                 Sort:     0,
                 ParentId: 1100,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1102,
@@ -354,6 +472,9 @@ var menus = []model.Menu{
                 Path:     "/system/menu",
                 Sort:     0,
                 ParentId: 1100,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1103,
@@ -362,6 +483,9 @@ var menus = []model.Menu{
                 Path:     "/system/api",
                 Sort:     0,
                 ParentId: 1100,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
             {
                 Id:       1104,
@@ -370,6 +494,9 @@ var menus = []model.Menu{
                 Path:     "/system/setting",
                 Sort:     0,
                 ParentId: 1100,
+                Roles: []model.Role{
+                    roles[0],
+                },
             },
         },
     },
@@ -380,6 +507,7 @@ var menus = []model.Menu{
         Path:     "/log",
         Sort:     0,
         ParentId: 0,
+        Roles:    roles,
         Children: []model.Menu{
             {
                 Id:       1111,
@@ -388,6 +516,7 @@ var menus = []model.Menu{
                 Path:     "/log/operation",
                 Sort:     0,
                 ParentId: 1110,
+                Roles:    roles,
             },
             {
                 Id:       1112,
@@ -396,6 +525,7 @@ var menus = []model.Menu{
                 Path:     "/log/login",
                 Sort:     0,
                 ParentId: 1110,
+                Roles:    roles,
             },
             {
                 Id:       1113,
@@ -404,6 +534,7 @@ var menus = []model.Menu{
                 Path:     "/log/password",
                 Sort:     0,
                 ParentId: 1110,
+                Roles:    roles,
             },
             {
                 Id:       1114,
@@ -412,6 +543,7 @@ var menus = []model.Menu{
                 Path:     "/log/machine",
                 Sort:     0,
                 ParentId: 1110,
+                Roles:    roles,
             },
         },
     },
@@ -422,6 +554,7 @@ var menus = []model.Menu{
         Path:     "/me",
         Sort:     0,
         ParentId: 0,
+        Roles:    roles,
     },
     {
         Id:       1130,
@@ -430,6 +563,7 @@ var menus = []model.Menu{
         Path:     "/help",
         Sort:     0,
         ParentId: 0,
+        Roles:    roles,
     },
 }
 

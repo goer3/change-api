@@ -35,7 +35,7 @@ func (r *InterfaceResult) UnwrapWithDefault(v interface{}) interface{} {
 // 解析 interface 结果，如果报错，则执行函数
 func (r *InterfaceResult) UnwrapWithFunc(f func() interface{}) interface{} {
     if r.Error != nil {
-        common.Log.Debug("failed to query the redis cache, , run funtion")
+        common.Log.Debug("failed to query the redis cache, , run function")
         common.Log.Debug(r.Error)
         return f()
     }

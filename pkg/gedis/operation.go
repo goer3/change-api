@@ -56,36 +56,41 @@ func WithXX() *OperationAttr {
     }
 }
 
-// 字符串操作
-type StringOperation struct {
+// 操作
+type Operation struct {
     Redis   *redis.Client
     Context context.Context
 }
 
 // 构造函数
-func NewStringOperation() *StringOperation {
-    return &StringOperation{common.Cache, context.Background()}
+func NewOperation() *Operation {
+    return &Operation{common.Cache, context.Background()}
 }
 
 // 获取单个字符串 Key
-func (s *StringOperation) Get(key string) *StringResult {
+func (s *Operation) GetString(key string) *StringResult {
     return NewStringResult(s.Redis.Get(s.Context, key).Result())
 }
 
-// 获取多个字符串 Key
-func (s *StringOperation) MGet(keys ...string) *SliceResult {
+// 获取单个 int Key
+func (s *Operation) GetInt(key string) *IntResult {
+    return NewIntResult(s.Redis.Get(s.Context, key).Int())
+}
+
+// 获取多个 Key
+func (s *Operation) MGet(keys ...string) *SliceResult {
     return NewSliceResult(s.Redis.MGet(s.Context, keys...).Result())
 }
 
-// 删除单个字符串 Key
-func (s *StringOperation) Del(key string) (int64, error) {
+// 删除单个 Key
+func (s *Operation) Del(key string) (int64, error) {
     return s.Redis.Del(s.Context, key).Result()
 }
 
-// 设置字符串 Key / Value
+// 设置 Key / Value
 // 使用方法：
 // gedis.Set("key", "value", gedis.WithExpire(time.Second * 10), gedis.WithNX())
-func (s *StringOperation) Set(key string, value interface{}, attrs ...*OperationAttr) *InterfaceResult {
+func (s *Operation) Set(key string, value interface{}, attrs ...*OperationAttr) *InterfaceResult {
     // 生成参数列表
     oas := OperationAttrs(attrs)
 

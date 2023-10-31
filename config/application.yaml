@@ -74,3 +74,13 @@ redis:
   max-idle-conns: 10
   # 最大空闲时长，单位分钟
   max-idle-time: 10
+
+# JWT 认证
+jwt:
+  # 领域，用于区分不同的认证范围
+  realm: change
+  # 用于签名和验证 JWT 令牌的密钥
+  # 一般是一个随机生成的字符串，在中间件生成 JWT 令牌时，会使用这个密钥对令牌进行签名
+  key: SNDAhUH8SCB7h06f72H8
+  # Token 超时时间，单位秒，默认 1 天，Redis 中有效期也是如此
+  timeout: 86400

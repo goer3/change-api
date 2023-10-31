@@ -18,6 +18,7 @@ type Configuration struct {
     Log    LogConfiguration    `mapstructure:"log" json:"log"`
     MySQL  MySQLConfiguration  `mapstructure:"mysql" json:"mysql"`
     Redis  RedisConfiguration  `mapstructure:"redis" json:"redis"`
+    JWT    JWTConfiguration    `mapstructure:"jwt" json:"jwt"`
 }
 
 // 系统配置
@@ -64,4 +65,11 @@ type RedisConfiguration struct {
     MinIdleConns int    `mapstructure:"min-idle-conns" json:"min_idle_conns"`
     MaxIdleConns int    `mapstructure:"max-idle-conns" json:"max_idle_conns"`
     MaxIdleTime  int    `mapstructure:"max-idle-time" json:"max_idle_time"`
+}
+
+// JWT 配置
+type JWTConfiguration struct {
+    Realm   string `mapstructure:"realm" json:"realm"`
+    Key     string `mapstructure:"key" json:"key"`
+    Timeout int    `mapstructure:"timeout" json:"timeout"`
 }
