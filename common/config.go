@@ -19,6 +19,7 @@ type Configuration struct {
     MySQL  MySQLConfiguration  `mapstructure:"mysql" json:"mysql"`
     Redis  RedisConfiguration  `mapstructure:"redis" json:"redis"`
     JWT    JWTConfiguration    `mapstructure:"jwt" json:"jwt"`
+    Login  LoginConfiguration  `mapstructure:"login" json:"login"`
 }
 
 // 系统配置
@@ -72,4 +73,10 @@ type JWTConfiguration struct {
     Realm   string `mapstructure:"realm" json:"realm"`
     Key     string `mapstructure:"key" json:"key"`
     Timeout int    `mapstructure:"timeout" json:"timeout"`
+}
+
+// 登录配置
+type LoginConfiguration struct {
+    WrongTimes int `mapstructure:"wrong-times" json:"wrong_times"`
+    LockTime   int `mapstructure:"lock-time" json:"lock_time"`
 }

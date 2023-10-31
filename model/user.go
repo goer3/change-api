@@ -38,7 +38,7 @@ type User struct {
     LastLoginIP            string          `gorm:"comment:最后一次登录IP" json:"last_login_ip"`
     LastLoginTime          carbon.DateTime `gorm:"comment:最后一次登录时间" json:"last_login_time"`
     LastChangePasswordTime carbon.DateTime `gorm:"comment:最后一次修改密码时间" json:"last_change_password_time"`
-    Status                 uint            `gorm:"type:tinyint(1);default:1;comment:用户状态(0=禁用,1=正常,2=未激活,3=锁定)" json:"status"`
+    Status                 uint            `gorm:"type:tinyint(1);default:1;comment:用户状态(0=禁用,1=正常,2=未激活)" json:"status"`
     RoleId                 uint            `gorm:"comment:角色id" json:"role_id"` // 关联角色
     Role                   Role            `gorm:"foreignKey:RoleId;comment:角色" json:"role"`
     BaseModel                              // 基础字段信息

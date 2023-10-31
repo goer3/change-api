@@ -7,6 +7,7 @@ import (
     "change-api/pkg/gedis"
     "change-api/pkg/utils"
     "errors"
+    "github.com/golang-module/carbon/v2"
     "time"
 
     jwt "github.com/appleboy/gin-jwt/v2"
@@ -35,29 +36,29 @@ func JWTAuth() (*jwt.GinJWTMiddleware, error) {
 // 通过从 ctx 中检索出数据，进行用户登录认证
 // 返回包含用户信息的 Map 或者 Struct
 func authenticator(ctx *gin.Context) (interface{}, error) {
-    // 获取用户登录数据
+    // 1.获取用户登录数据
     var req dto.LoginRequest
     if err := ctx.ShouldBind(&req); err != nil {
         return nil, errors.New("获取用户登录信息失败")
     }
 
-    // 通过 IP 判断用户登录次数是否达到上限
-    // 1.获取客户端 IP，注意确保获取到的是真实 IP
+    // 2.获取客户端 IP，注意确保获取到的是真实 IP
     ip := ctx.ClientIP()
     if ip == "" {
         ip = "None"
     }
 
-    // 2.获取 redis 中该用户登录错误次数
-    key := req.Account + ":" + ip
+    // 3.获取 redis 中该用户登录错误次数，用户跟 IP 做绑定，避免别人恶意登录导致账户锁定
     var conn = gedis.NewOperation()
-    times := conn.GetInt(key).UnwrapWithDefault(0)
-    // 密码错误次数，默认允许 5 次
-    if times >= 5 {
 
+    // 密码错误次数，默认允许 5 次
+    key := "Login:WrongTimes:" + req.Account + ":" + ip
+    times := conn.GetInt(key).UnwrapWithDefault(0)
+    if times >= common.Config.Login.WrongTimes {
+        return nil, errors.New("认证次数超过上限，账户已锁定")
     }
 
-    // 查询模板
+    // 4.用户未锁定，验证用户登录账户类型
     db := common.DB
     var user model.User
     var err error
@@ -71,31 +72,47 @@ func authenticator(ctx *gin.Context) (interface{}, error) {
         err = db.Where("job_id = ?", req.Account).First(&user).Error
     }
 
-    // 判断查询结果
+    // 5.用户查询失败，返回账户密码错误
     if err != nil {
         common.Log.Error(err)
         return nil, errors.New("用户名或密码错误")
     }
 
-    // 密码校验
+    // 6.查询成功，校验密码
     if !utils.ComparePassword(user.Password, req.Password) {
-        //
+        // 密码不对，则在原有的 redis 保存的错误次数上 +1，并设置过期时间
+        times += 1
+        conn.Set(key, times, gedis.WithExpire(time.Duration(common.Config.Login.LockTime)*time.Second))
         return nil, errors.New("用户名或密码错误")
     }
 
-    // 用户状态校验
-    switch user.Status {
-    case common.BrokenStatus:
+    // 7.密码正确，则进行用户状态校验
+    // 禁用
+    if user.Status == common.BrokenStatus {
         return nil, errors.New("用户已禁用，请联系管理员")
-    case common.UnActiveStatus:
-        return nil, errors.New("用户未激活，跳转到激活页面，修改密码激活")
-    case common.LockedStatus:
-        return nil, errors.New("用户已锁定，请等待多长时间后重新登录")
     }
 
-    // 位置状态
+    // 未激活
+    if user.Status == common.UnActiveStatus {
+        return nil, errors.New("用户未激活，跳转到激活页面，修改密码激活")
+    }
+
+    // 未知状态
     if user.Status != common.NormalStatus {
         return nil, errors.New("用户处于未知状态，请联系管理员")
     }
 
+    // 8. 登录成功
+    // 删除错误 redis 中的次数
+    _, _ = conn.Del(key)
+
+    // 更新数据库中登录信息
+    common.DB.Model(&model.User{}).
+        Where("id = ?", user.Id).
+        Updates(map[string]interface{}{
+            "last_login_ip":   ip,
+            "last_login_time": carbon.DateTime{Carbon: carbon.Now()},
+        })
+
+    // 返回登录信息
 }

@@ -27,7 +27,6 @@ var (
     BrokenStatus   uint = 0 // 用户状态：禁用
     NormalStatus   uint = 1 // 用户状态：正常
     UnActiveStatus uint = 2 // 用户状态：未激活
-    LockedStatus   uint = 3 // 用户状态：锁定
     False          uint = 0 // 否
     True           uint = 1 // 是
 )

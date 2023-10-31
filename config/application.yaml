@@ -84,3 +84,10 @@ jwt:
   key: SNDAhUH8SCB7h06f72H8
   # Token 超时时间，单位秒，默认 1 天，Redis 中有效期也是如此
   timeout: 86400
+
+# 登录配置
+login:
+  # 密码错误上限，达到上限锁定账户
+  wrong-times: 5
+  # 账户锁定时间，单位秒，默认 5 分钟
+  lock-time: 300
