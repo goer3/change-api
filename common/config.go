@@ -77,6 +77,8 @@ type JWTConfiguration struct {
 
 // 登录配置
 type LoginConfiguration struct {
-    WrongTimes int `mapstructure:"wrong-times" json:"wrong_times"`
-    LockTime   int `mapstructure:"lock-time" json:"lock_time"`
+    WrongTimes     int  `mapstructure:"wrong-times" json:"wrong_times"`
+    LockTime       int  `mapstructure:"lock-time" json:"lock_time"`
+    MultiDevices   bool `mapstructure:"multi-devices" json:"multi_devices"`
+    ResetTokenTime int  `mapstructure:"reset-token-time" json:"reset_token_time"`
 }
