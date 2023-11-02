@@ -34,7 +34,6 @@ type User struct {
     Birthday               carbon.DateTime `gorm:"comment:生日" json:"birthday"`
     CreatorId              uint            `gorm:"comment:创建人id" json:"creator_id"` // 关联用户自身
     Creator                *User           `gorm:"foreignKey:CreatorId;-" json:"creator"`
-    FirstLogin             *uint           `gorm:"type:tinyint(1);default:1;comment:是否第一次登录(0=否,1=是)" json:"first_login"`
     LastLoginIP            string          `gorm:"comment:最后一次登录IP" json:"last_login_ip"`
     LastLoginTime          carbon.DateTime `gorm:"comment:最后一次登录时间" json:"last_login_time"`
     LastChangePasswordTime carbon.DateTime `gorm:"comment:最后一次修改密码时间" json:"last_change_password_time"`

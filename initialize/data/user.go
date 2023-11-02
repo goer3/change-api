@@ -40,9 +40,8 @@ var users = []model.User{
         Birthday: carbon.DateTime{
             Carbon: carbon.Now(),
         },
-        CreatorId:  0,
-        FirstLogin: &common.False,
-        RoleId:     1,
+        CreatorId: 0,
+        RoleId:    1,
     },
     {
         Id:       2,
@@ -69,9 +68,8 @@ var users = []model.User{
         Birthday: carbon.DateTime{
             Carbon: carbon.Now(),
         },
-        CreatorId:  0,
-        FirstLogin: &common.True,
-        RoleId:     2,
+        CreatorId: 0,
+        RoleId:    2,
     },
 }
 
