@@ -1,6 +1,7 @@
 package middleware
 
 import (
+    "change-api/common"
     "fmt"
     "time"
 
@@ -37,8 +38,8 @@ func AccessLog(ctx *gin.Context) {
 
     // 打印日志，OPTIONS 请求使用 DEBUG
     if method == "OPTIONS" {
-        fmt.Println(logStr)
+        common.Log.Debug(logStr)
     } else {
-        fmt.Println(logStr)
+        common.Log.Info(logStr)
     }
 }

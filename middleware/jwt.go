@@ -53,7 +53,7 @@ func authenticator(ctx *gin.Context) (interface{}, error) {
     }
 
     // 最终存储在 Redis 中用于保存用户登录失败次数的 Key
-    key := "Login:WrongTimes:" + req.Account + ":" + ip
+    key := "LOGIN:WRONG_TIMES:" + req.Account + ":" + ip
 
     // 3.获取 redis 中该用户登录错误次数，通过用户和 IP 进行绑定，避免恶意登录导致用户账户被误锁定
     var conn = gedis.NewOperation()
@@ -163,7 +163,7 @@ func loginResponse(ctx *gin.Context, code int, token string, expire time.Time) {
         }
 
         // 将新的 Token 存到 Redis 中，用户下一次请求的时候就去验证该 Token
-        key := "Token:" + jobId.(string)
+        key := "LOGIN:TOKEN:USER:" + jobId.(string)
         cache := gedis.NewOperation()
         cache.Set(key, token, gedis.WithExpire(time.Duration(common.Config.JWT.Timeout)*time.Second))
     }
@@ -183,7 +183,7 @@ func unauthorized(ctx *gin.Context, code int, message string) {
         token := utils.RandString(16)
 
         // 将数据保存到 Redis，后续用户可以根据该 Token 就行密码重置
-        key := "ResetPasswordToken:" + token
+        key := "LOGIN:TOKEN:RESET_PASSWORD:" + token
         cache := gedis.NewOperation()
         cache.Set(key, jobId, gedis.WithExpire(time.Duration(common.Config.Login.ResetTokenTime)*time.Second))
 
@@ -211,7 +211,7 @@ func authorizator(data interface{}, ctx *gin.Context) bool {
         if !common.Config.Login.MultiDevices {
             // Key
             token := jwt.GetToken(ctx)
-            key := "Token:" + user.JobId
+            key := "LOGIN:TOKEN:USER:" + user.JobId
 
             // 验证该用户的 Token 和 Redis 中的是否一致
             cache := gedis.NewOperation()

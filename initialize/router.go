@@ -18,7 +18,7 @@ func Router() *gin.Engine {
     r.Use(middleware.AccessLog)       // 请求日志中间件
     r.Use(middleware.Cors)            // 跨域配置中间件
     r.Use(middleware.Exception)       // 异常拦截中间件
-    auth, err := middleware.JWTAuth() // JWT 中间件
+    auth, err := middleware.JWTAuth() // JWT认证中间件
     if err != nil {
         common.Log.Error(err)
         panic(err)
