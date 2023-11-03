@@ -11,3 +11,9 @@ type LoginResponse struct {
     Token  string `json:"token"`
     Expire string `json:"expire"`
 }
+
+// 重置密码
+type ResetPassword struct {
+    Password   string `json:"password"`
+    RePassword string `json:"re_password"`
+}

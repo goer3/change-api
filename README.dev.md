@@ -19,6 +19,8 @@ go get -u github.com/natefinch/lumberjack
 go get -u gorm.io/gorm
 # MySQL 连接器
 go get -u gorm.io/driver/mysql
+# Nanoid
+go get -u github.com/matoous/go-nanoid
 # 日期时间
 go get -u github.com/golang-module/carbon/v2
 # Redis

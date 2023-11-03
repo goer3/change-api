@@ -16,13 +16,13 @@ func init() {
 // 导出命令
 var exportCmd = &cobra.Command{
     Use:   "export",
-    Short: "you can export default config with `export config`",
+    Short: "Export default config with `export config`",
 }
 
 // 导出默认配置命令
 var exportConfigCmd = &cobra.Command{
     Use:   "config",
-    Short: "you can export default config to file config.yaml",
+    Short: "Export default config to file config.yaml",
     Run: func(cmd *cobra.Command, args []string) {
         log2.INFO("start export default config to config.yaml")
         bs, _ := common.FS.ReadFile(common.Runtime.Config)

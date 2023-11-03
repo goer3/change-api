@@ -13,7 +13,7 @@ func init() {
 // 数据初始化命令
 var initCmd = &cobra.Command{
     Use:   "init",
-    Short: "you can initialize data to MySQL database",
+    Short: "Initialize data to MySQL database",
     Run: func(cmd *cobra.Command, args []string) {
         log2.INFO("start initialize data to MySQL database")
         initialize.Config() // 初始化配置

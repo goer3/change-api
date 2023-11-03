@@ -13,7 +13,7 @@ func init() {
 // 同步数据结构命令
 var migrateCmd = &cobra.Command{
     Use:   "migrate",
-    Short: "you can migrate table to MySQL database",
+    Short: "Migrate table to MySQL database",
     Run: func(cmd *cobra.Command, args []string) {
         log2.INFO("start migrate table to MySQL database")
         initialize.Config()  // 初始化配置

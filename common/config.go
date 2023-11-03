@@ -77,6 +77,7 @@ type JWTConfiguration struct {
 
 // 登录配置
 type LoginConfiguration struct {
+    PasswordLevel  int  `mapstructure:"password-level" json:"password_level"`
     WrongTimes     int  `mapstructure:"wrong-times" json:"wrong_times"`
     LockTime       int  `mapstructure:"lock-time" json:"lock_time"`
     MultiDevices   bool `mapstructure:"multi-devices" json:"multi_devices"`

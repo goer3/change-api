@@ -27,13 +27,13 @@ func init() {
 // 运行命令
 var runCmd = &cobra.Command{
     Use:   "run",
-    Short: "you can run the service with `run serve`",
+    Short: "Run the service with `run serve`",
 }
 
 // 启动命令
 var runServeCmd = &cobra.Command{
     Use:   "serve",
-    Short: "you can run the service with some flags",
+    Short: "Run the service with some flags",
     Run: func(cmd *cobra.Command, args []string) {
         // 配置初始化
         initialize.Config()
