@@ -4,7 +4,7 @@ import "github.com/golang-module/carbon/v2"
 
 // 用户模型
 type User struct {
-    Id                     uint            `gorm:"primaryKey;comment:自增编号" json:"id"`
+    Id                     Nanoid          `gorm:"type:char(21);primaryKey;comment:用户id" json:"id"`
     Name                   string          `gorm:"not null;comment:姓名" json:"name"`
     Landline               string          `gorm:"comment:固话号码" json:"landline"`
     Mobile                 string          `gorm:"uniqueIndex:uidx_mobile;comment:手机号" json:"mobile"`

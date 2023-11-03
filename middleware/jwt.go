@@ -99,8 +99,8 @@ func authenticator(ctx *gin.Context) (interface{}, error) {
     // 未激活
     if user.Status == common.UnActiveStatus {
         // 用户默认未激活，所以第一次登录会提示重置密码然后激活
-        // 通过自定义关键字 UnActiveUser 并带上 JobId，后续方便直接就行判断
-        return nil, fmt.Errorf("UnActiveUser:%s", user.JobId)
+        // 通过自定义关键字 UnActiveUser 并带上 id，后续方便直接就行判断
+        return nil, fmt.Errorf("UnActiveUser:%s", user.Id)
     }
 
     // 未知状态
@@ -122,7 +122,7 @@ func authenticator(ctx *gin.Context) (interface{}, error) {
 
     // 8.返回登录信息
     // 设置 Context，方便后面使用
-    ctx.Set("jobId", user.JobId)
+    ctx.Set("id", user.Id)
 
     // 以指针的方式将数据传递给 PayloadFunc 函数继续处理
     return &user, nil
@@ -136,8 +136,7 @@ func payloadFunc(data interface{}) jwt.MapClaims {
     if v, ok := data.(*model.User); ok {
         // 封装一些常用的字段，方便直接使用
         return jwt.MapClaims{
-            jwt.IdentityKey: v.JobId,     // 工号
-            "UserId":        v.Id,        // 用户 Id
+            jwt.IdentityKey: v.Id,        // id
             "UserName":      v.Name,      // 用户名字
             "RoleId":        v.Role.Id,   // 角色 Id
             "RoleName":      v.Role.Name, // 角色名称
@@ -157,13 +156,13 @@ func loginResponse(ctx *gin.Context, code int, token string, expire time.Time) {
     // 不允许多设备登录配置
     if !common.Config.Login.MultiDevices {
         // 获取前面 Context 设置的值，并验证是否合法
-        jobId, _ := ctx.Get("jobId")
-        if v, ok := jobId.(string); !ok || v == "" {
+        id, _ := ctx.Get("id")
+        if v, ok := id.(string); !ok || v == "" {
             response.FailedWithMessage("用户登录状态异常")
         }
 
         // 将新的 Token 存到 Redis 中，用户下一次请求的时候就去验证该 Token
-        key := common.RedisKey.UserToken + jobId.(string)
+        key := common.RedisKey.UserToken + id.(string)
         cache := gedis.NewOperation()
         cache.Set(key, token, gedis.WithExpire(time.Duration(common.Config.JWT.Timeout)*time.Second))
     }
@@ -176,8 +175,8 @@ func loginResponse(ctx *gin.Context, code int, token string, expire time.Time) {
 func unauthorized(ctx *gin.Context, code int, message string) {
     // 判断是否是用户未激活报错
     if strings.HasPrefix(message, "UnActiveUser") {
-        // 获取 jobId
-        jobId := strings.Split(message, ":")[1]
+        // 获取 id
+        id := strings.Split(message, ":")[1]
 
         // 生成随机字符串，该字符串作为重置密码的 Token
         token := utils.RandString(16)
@@ -185,7 +184,7 @@ func unauthorized(ctx *gin.Context, code int, message string) {
         // 将数据保存到 Redis，后续用户可以根据该 Token 就行密码重置
         key := common.RedisKey.ResetPasswordToken + token
         cache := gedis.NewOperation()
-        cache.Set(key, jobId, gedis.WithExpire(time.Duration(common.Config.Login.ResetTokenTime)*time.Second))
+        cache.Set(key, id, gedis.WithExpire(time.Duration(common.Config.Login.ResetTokenTime)*time.Second))
 
         // 响应客户端
         response.FailedWithCodeAndMessage(response.UnActived, token)
@@ -196,22 +195,22 @@ func unauthorized(ctx *gin.Context, code int, message string) {
 
 // 用户登录后的中间件，用于解析 Token
 func identityHandler(ctx *gin.Context) interface{} {
-    // 从 Context 中获取用户的 JobId
-    jobId, _ := utils.GetStringFromContext(ctx, "identity")
+    // 从 Context 中获取用户的 id
+    id, _ := utils.GetStringFromContext(ctx, "identity")
     return &model.User{
-        JobId: jobId,
+        Id: model.Nanoid(id),
     }
 }
 
 // 用户登录后的中间件，用于验证 Token
 func authorizator(data interface{}, ctx *gin.Context) bool {
     user, ok := data.(*model.User)
-    if ok && user.JobId != "" {
+    if ok && user.Id != "" {
         // 不允许多设备登录配置
         if !common.Config.Login.MultiDevices {
             // Key
             token := jwt.GetToken(ctx)
-            key := common.RedisKey.UserToken + user.JobId
+            key := common.RedisKey.UserToken + string(user.Id)
 
             // 验证该用户的 Token 和 Redis 中的是否一致
             cache := gedis.NewOperation()

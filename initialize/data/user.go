@@ -16,7 +16,7 @@ var password = "123456"
 // 用户初始化数据
 var users = []model.User{
     {
-        Id:       1,
+        Id:       "admin",
         Name:     "超管",
         Mobile:   "18888888888",
         Email:    "admin@ezops.cn",
@@ -44,7 +44,7 @@ var users = []model.User{
         RoleId:    1,
     },
     {
-        Id:       2,
+        Id:       "guest",
         Name:     "访客",
         Mobile:   "19999999999",
         Email:    "guest@ezops.cn",

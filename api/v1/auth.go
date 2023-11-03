@@ -21,8 +21,8 @@ func ActiveUserHandler(ctx *gin.Context) {
     // 根据 Token 查询重置密码用户
     conn := gedis.NewOperation()
     key := common.RedisKey.ResetPasswordToken + token
-    jobId := conn.GetString(key).Unwrap()
-    if jobId == "" {
+    id := conn.GetString(key).Unwrap()
+    if id == "" {
         response.FailedWithMessage("重置密码 Token 已失效，请重新获取")
     }
 
@@ -39,7 +39,7 @@ func ActiveUserHandler(ctx *gin.Context) {
 
     // 查询用户，修改密码
     var user model.User
-    err := common.DB.Where("job_id = ?", jobId).First(&user).Error
+    err := common.DB.Where("id = ?", id).First(&user).Error
     if err != nil {
         response.FailedWithMessage("获取修改密码的用户信息失败")
     }

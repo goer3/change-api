@@ -1,9 +1,10 @@
 package model
 
 import (
-    "change-api/common"
+    "database/sql/driver"
     "fmt"
     "github.com/matoous/go-nanoid"
+    "gorm.io/gorm"
 )
 
 // Nanoid 自定义类型
@@ -14,15 +15,12 @@ func (n *Nanoid) Scan(value interface{}) error {
     return nil
 }
 
-func (n Nanoid) Value() (interface{}, error) {
-    return string(n), nil
+func (n *Nanoid) Value() (driver.Value, error) {
+    return string(*n), nil
 }
 
-// 自定义生成 Nanoid 的方法
-func GenerateNanoid() Nanoid {
-    id, err := gonanoid.Nanoid()
-    if err != nil {
-        common.Log.Error("Nanoid 生成失败", err.Error())
-    }
-    return Nanoid(id)
+func (n *Nanoid) BeforeCreate(tx *gorm.DB) error {
+    id, _ := gonanoid.Nanoid()
+    *n = Nanoid(id)
+    return nil
 }

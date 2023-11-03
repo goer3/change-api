@@ -1,6 +1,11 @@
 package utils
 
-import "math/rand"
+import (
+    "change-api/common"
+    "change-api/model"
+    "github.com/matoous/go-nanoid"
+    "math/rand"
+)
 
 // 生成指定长度的随机字符串
 func RandString(n int) string {
@@ -10,4 +15,13 @@ func RandString(n int) string {
         b[i] = letters[rand.Intn(len(letters))]
     }
     return string(b)
+}
+
+// 自定义生成 Nanoid 的方法
+func GenerateNanoid() model.Nanoid {
+    id, err := gonanoid.Nanoid()
+    if err != nil {
+        common.Log.Error("Nanoid 生成失败", err.Error())
+    }
+    return model.Nanoid(id)
 }
