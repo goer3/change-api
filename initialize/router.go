@@ -30,7 +30,8 @@ func Router() *gin.Engine {
 
     // 用户路由组
     urg := r.Group(common.Config.System.ApiPrefix + "/" + common.Config.System.ApiVersion + "/user")
-    routes.UserRoutes(urg) // 用户路由组
+    urg.Use(auth.MiddlewareFunc()) // 登录后才能访问的接口
+    routes.UserRoutes(urg, auth)   // 用户路由组
 
     // 初始化成功
     log2.INFO("router initialize success")

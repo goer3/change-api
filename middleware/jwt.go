@@ -157,12 +157,12 @@ func loginResponse(ctx *gin.Context, code int, token string, expire time.Time) {
     if !common.Config.Login.MultiDevices {
         // 获取前面 Context 设置的值，并验证是否合法
         id, _ := ctx.Get("id")
-        if v, ok := id.(string); !ok || v == "" {
+        if v, ok := id.(model.Nanoid); !ok || v == "" {
             response.FailedWithMessage("用户登录状态异常")
         }
 
         // 将新的 Token 存到 Redis 中，用户下一次请求的时候就去验证该 Token
-        key := common.RedisKey.UserToken + id.(string)
+        key := common.RedisKey.UserToken + string(id.(model.Nanoid))
         cache := gedis.NewOperation()
         cache.Set(key, token, gedis.WithExpire(time.Duration(common.Config.JWT.Timeout)*time.Second))
     }
