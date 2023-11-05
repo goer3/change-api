@@ -10,7 +10,7 @@ import (
 // 用户列表
 func UserListHandler(ctx *gin.Context) {
     var users []model.User
-    common.DB.Find(&users)
+    common.DB.Preload("Department").Find(&users)
     response.SuccessWithData(map[string]interface{}{
         "list": users,
     })
