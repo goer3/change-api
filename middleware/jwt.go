@@ -69,12 +69,13 @@ func authenticator(ctx *gin.Context) (interface{}, error) {
     var err error
 
     // 判断用户登录采用的方式，支持使用工号，手机号，Email
+    dbt := db.Preload("Role").Preload("Department")
     if utils.IsMobile(req.Account) {
-        err = db.Where("mobile = ?", req.Account).First(&user).Error
+        err = dbt.Where("mobile = ?", req.Account).First(&user).Error
     } else if utils.IsEmail(req.Account) {
-        err = db.Where("email = ?", req.Account).First(&user).Error
+        err = dbt.Where("email = ?", req.Account).First(&user).Error
     } else {
-        err = db.Where("job_id = ?", req.Account).First(&user).Error
+        err = dbt.Where("job_id = ?", req.Account).First(&user).Error
     }
 
     if err != nil {
