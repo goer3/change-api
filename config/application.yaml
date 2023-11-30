@@ -101,3 +101,25 @@ login:
   multi-devices: false
   # 重置密码 Token 过期时间
   reset-token-time: 300
+
+# Minio 配置
+minio:
+  # Minio 地址
+  url: 127.0.0.1:9000
+  # Key
+  access-key: fHmeOIiwMHhXK0sN23Mb
+  # Secret
+  access-secret: VNXj9435YvEvZs8HTzVbNaOcUAoSbh4ikz3obtMt
+  # 是否 SSL
+  ssl: false
+
+# 双因子认证
+otp-auth:
+  # 是否开启双因素认证
+  enabled: true
+  # 发行商
+  issuer: Change
+  # OTP 位数，支持 6 和 8
+  digits: 6
+  # 计数周期，秒
+  period: 30

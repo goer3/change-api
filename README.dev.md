@@ -27,4 +27,9 @@ go get -u github.com/golang-module/carbon/v2
 go get -u github.com/redis/go-redis/v9
 # JWT
 go get -u github.com/appleboy/gin-jwt/v2
+# OTP 双因素认证
+go get -u github.com/pquerna/otp  
+go get -u github.com/pquerna/otp/totp
+# Minio
+go get -u github.com/minio/minio-go/v7
 ```
